@@ -33,10 +33,7 @@ const quizDiffHandler = function(diff,length)
   }
   return quizNums;
 }
-
-
-const generateQuizQuestions = function(operation,difficulty,length)
-{
+export function quizQuestionGenerator(operation,difficulty,length){
   const quizNumbers = quizDiffHandler(difficulty,length);
   const quizData = 
   {
@@ -44,6 +41,5 @@ const generateQuizQuestions = function(operation,difficulty,length)
     operation: operation,
     answer: quizNumbers.map(nums => nums.reduce((a,b) => eval(`${a} ${operation} ${b}`)))
   }
-  return quizData;
+  return quizData; 
 }
-console.log(generateQuizQuestions('*',3,5));
