@@ -7,9 +7,5 @@ pickQuizBtns.forEach(function (btn) {
   });
 });
 export function createQuiz(operator,difficulty,length,canBeNegative) {
-  // const quizInfo = generator.quizQuestionGenerator(operator,difficulty,length,canBeNegative);
-  console.log(operator,difficulty,length,canBeNegative);
-}
-function createQuizString() {
-  
+  const quizInfo = generator.quizQuestionGenerator(operator,difficulty,length,canBeNegative);
 }

@@ -17,20 +17,19 @@ export function getQuizInfo(diffBtnsLocation, operation) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
       const quizDifficulty = Number(this.id.slice(-1));
-      const answerNegative = handleNegative(quizDifficulty,operation);
-      createQuiz(operation,quizDifficulty,quizDifficulty * 4,answerNegative);
+      const answerNegative = handleNegative(quizDifficulty, operation);
+      createQuiz(operation, quizDifficulty, quizDifficulty * 4, answerNegative);
       choseBtns.forEach((btn) => btn.remove());
     })
   );
 }
-const handleNegative = function(difficulty,operation){
-    switch (true)
-    {
-        case difficulty>=2 && operation==="-":
-            return true;
-        case difficulty>=3 && (operation==="*" || operation==="/"):
-            return true; 
-        default:
-            return false
-    }
-}
+const handleNegative = function (difficulty, operation) {
+  switch (true) {
+    case difficulty >= 2 && operation === '-':
+      return true;
+    case difficulty >= 3 && (operation === '*' || operation === '/'):
+      return true;
+    default:
+      return false;
+  }
+};
