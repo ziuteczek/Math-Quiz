@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math quiz</title>
+  </head>
+  <body>
+    <div class="chose-quiz">
+      <button class="chose-quiz__btn" operation='+'>Dodawanie</button>
+      <button class="chose-quiz__btn" operation='-'>Odejmowanie</button>
+      <button class="chose-quiz__btn" operation='*'>Mnożenie</button>
+      <button class="chose-quiz__btn" operation='/'>Dzielenie</button>
+    </div>
+    <script type='module' src='./js/gather_quiz_info.js'></script>
     <script type="module" src="./js/quiz_question_generator.js"></script>
     <script type="module" src="./js/index.js"></script>
-</body>
+  </body>
 </html>
