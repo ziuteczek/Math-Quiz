@@ -51,8 +51,7 @@ export function quizQuestionGenerator(
   const quizData = {
     numbers: quizNumbers,
     operation: operation,
-    answer: quizNumbers.map((nums) =>
-      nums.reduce((a, b) => eval(`${a} ${operation} ${b}`))
+    answer: quizNumbers.map((nums) => nums.reduce((a, b) => eval(`${a} ${operation} ${b}`))
     ),
   };
   return quizData;

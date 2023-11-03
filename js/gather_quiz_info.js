@@ -1,5 +1,7 @@
 'use strict';
-import { createQuiz } from './index.js';
+
+import { startQuiz } from './walkthrough.js';
+
 export function getQuizInfo(diffBtnsLocation, operation) {
   const difficulties = [
     ['łatwy', 'easy1'],
@@ -18,7 +20,7 @@ export function getQuizInfo(diffBtnsLocation, operation) {
       e.preventDefault();
       const quizDifficulty = Number(this.id.slice(-1));
       const answerNegative = handleNegative(quizDifficulty, operation);
-      createQuiz(operation, quizDifficulty, quizDifficulty * 4, answerNegative);
+      startQuiz(operation, quizDifficulty, 10, answerNegative);
       choseBtns.forEach((btn) => btn.remove());
     })
   );
