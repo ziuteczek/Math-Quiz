@@ -22,16 +22,17 @@ export async function startQuiz(
       ...quizData.numbers[i]
     );
     const answer = await getPromise(quizElements.submit, quizElements.answer);
-    usersAnswers.push([answer, quizData.answer]);
+    usersAnswers.push([answer, quizData.answer[i]]);
   }
-  writeAnswers(quizElements, usersAnswers);
+  writeScore(quizElements, usersAnswers);
 }
-function writeAnswers(quizElObject, answers = []) {
+function writeScore(quizElObject, answers = []) {
   Object.values(quizElObject).forEach((element) => element.remove());
   const corectAnswers = answers.reduce((corectAnswers, answer) => {
     if (answer[0] === answer[1]) {
-      return ++corectAnswers;
+      return corectAnswers+1;
     }
+    return corectAnswers;
   }, 0);
   const scoreString = `Odpowiedziales/as poprawnie na ${corectAnswers} z ${answers.length} pytań`;
 }
