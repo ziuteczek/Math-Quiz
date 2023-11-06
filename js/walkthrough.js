@@ -14,6 +14,7 @@ export async function startQuiz(
   );
   const quizLength = quizData.answer.length;
   const quizElements = createElements();
+  const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
     askQuestion(
       quizElements.question,
@@ -21,13 +22,24 @@ export async function startQuiz(
       ...quizData.numbers[i]
     );
     const answer = await getPromise(quizElements.submit, quizElements.answer);
+    usersAnswers.push([answer, quizData.answer]);
   }
+  writeAnswers(quizElements, usersAnswers);
+}
+function writeAnswers(quizElObject, answers = []) {
+  Object.values(quizElObject).forEach((element) => element.remove());
+  const corectAnswers = answers.reduce((corectAnswers, answer) => {
+    if (answer[0] === answer[1]) {
+      return ++corectAnswers;
+    }
+  }, 0);
+  const scoreString = `Odpowiedziales/as poprawnie na ${corectAnswers} z ${answers.length} pytań`;
 }
 function getPromise(btn, textArea) {
   return new Promise((resolve) => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      resolve(textArea.value);
+      resolve(Number(textArea.value));
     });
   });
 }
