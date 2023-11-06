@@ -1,6 +1,6 @@
 'use strict';
 import * as generator from './quiz_question_generator.js';
-export function startQuiz(
+export async function startQuiz(
   operation,
   quizDifficulty,
   length,
@@ -20,12 +20,16 @@ export function startQuiz(
       quizData.operation,
       ...quizData.numbers[i]
     );
-    if (
-      checkAnswer(quizData.answer[i], quizElements.submit, quizElements.answer)
-    ) {
-      console.log('dobrze');
-    }
+    const answer = await getPromise(quizElements.submit, quizElements.answer);
   }
+}
+function getPromise(btn, textArea) {
+  return new Promise((resolve) => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      resolve(textArea.value);
+    });
+  });
 }
 const createElements = function (questionContainer = document.body) {
   const elementsToCreate = ['h3', 'p', 'input', 'button'];
@@ -41,35 +45,5 @@ const createElements = function (questionContainer = document.body) {
   };
 };
 const askQuestion = function (questionEl, operation, a, b) {
-  if (operation === '/') {
-    operation = ':';
-  }
   questionEl.textContent = `Ile to ${a} ${operation} ${b}`;
 };
-async function checkAnswer(answer, btn, input) {
-  for (let tries = 3; tries > 0; tries--) {
-    const userAnswer = await getAnswer(btn, input);
-    if (userAnswer === answer) {
-      console.log('dobrze');
-      return true;
-    }
-  }
-  return false;
-}
-async function getAnswer(btn, input) {
-  try {
-    const userInput = await waitForUserInput(btn, input);
-    return userInput;
-  } catch (error) {
-    console.log('Błąd:', error);
-  }
-}
-function waitForUserInput(btn, input) {
-  return new Promise((r) => {
-    btn.addEventListener('click', () => {
-      const userInput = input.value;
-      input.value = '';
-      r(Number(userInput));
-    });
-  });
-}
