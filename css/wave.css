@@ -10,6 +10,7 @@ footer {
     overflow: hidden;
 }
 .wave {
+    filter: invert(37%) sepia(65%) saturate(522%) hue-rotate(173deg) brightness(96%) contrast(84%);
     position: absolute;
     bottom: 0;
     width: 100%;
