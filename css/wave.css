@@ -1,0 +1,55 @@
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.wave-section {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: url("../wave.png");
+    background-size: 1000px 100px;
+}
+.wave1 {
+    animation: boucing 30s linear infinite;
+    z-index: 5;
+    opacity: 1;
+    animation-delay: 0;
+    bottom: 0;
+}
+.wave2 {
+    animation: boucing 30s linear infinite reverse;
+    opacity: 4;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+}
+.wave3 {
+    animation: boucing 30s linear infinite;
+    z-index: 3;
+    opacity: .2;
+    animation-delay: -2s;
+    bottom: 15px;
+}
+.wave4 {
+    animation: boucing 2 30s linear infinite;
+    z-index: 2;
+    opacity: .7;
+    animation-delay: -5s;
+    bottom: 20px;
+}
+@keyframes boucing {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: 1000px;
+    }
+}
