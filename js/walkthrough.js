@@ -30,7 +30,7 @@ function writeScore(quizElObject, answers = []) {
   Object.values(quizElObject).forEach((element) => element.remove());
   const corectAnswers = answers.reduce((corectAnswers, answer) => {
     if (answer[0] === answer[1]) {
-      return corectAnswers+1;
+      return corectAnswers++;
     }
     return corectAnswers;
   }, 0);
