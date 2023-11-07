@@ -30,9 +30,8 @@ const generateQuizNumbers = function (
   canBeNegative,
   operation
 ) {
-  if (operation === "/")
-  {
-    return handleDivision(minNumber,maxNumber,quizLength)
+  if (operation === '/') {
+    return handleDivision(minNumber, maxNumber, quizLength);
   }
   const quizNumbers = [];
   const chceckfunction = canBeNegative ? handlePositive : handleNegative;
@@ -43,27 +42,44 @@ const generateQuizNumbers = function (
   }
   return quizNumbers;
 };
-const quizDiffHandler = function (diff, length, canBeNegative,operation) {
-  let quizNums;
-  switch (diff) {
+const quizDiffHandler = function (diff, length, canBeNegative, operation) {
+  return generateQuizNumbers(
+    length,
+    ...diffToRange(diff),
+    canBeNegative,
+    operation
+  );
+};
+const diffToRange = (n) => {
+  switch (n) {
     case 1:
-      quizNums = generateQuizNumbers(length, 0, 5, canBeNegative,operation);
-      break;
+      return [0, 5];
     case 2:
-      quizNums = generateQuizNumbers(length, 5, 10, canBeNegative,operation);
-      break;
+      return [5, 10];
     case 3:
-      quizNums = generateQuizNumbers(length, 10, 15, canBeNegative,operation);
+      return [10, 15];
+  }
+};
+const operatorToString = (operator) => {
+  let operationName;
+  switch (operator) {
+    case '*':
+      operationName = 'Mnożenie';
       break;
-    case 4:
-      quizNums = generateQuizNumbers(length, 15, 20, canBeNegative,operation);
+    case '+':
+      operationName = 'Dodawanie';
       break;
-    case 5:
-      quizNums = generateQuizNumbers(length, 10, 20, canBeNegative,operation);
+    case '-':
+      operationName = 'Odejmowanie';
+      break;
+    case '/':
+      operation = 'Dzielenie';
       break;
   }
-  return quizNums;
+  return operationName;
 };
+const createTitleString = (minNum, maxNum, operation) =>
+  `${operatorToString(operation)} w zakresie od ${minNum} do ${maxNum}`;
 export function quizQuestionGenerator(
   operation,
   difficulty,
@@ -82,6 +98,7 @@ export function quizQuestionGenerator(
     answer: quizNumbers.map((nums) =>
       nums.reduce((a, b) => eval(`${a} ${operation} ${b}`))
     ),
+    title: createTitleString(...diffToRange(difficulty, operation),operation),
   };
   return quizData;
 }

@@ -15,6 +15,7 @@ export async function startQuiz(
   const quizLength = quizData.answer.length;
   const answerCont = document.querySelector(".answer");
   const quizElements = createElements(answerCont);
+  quizElements.title.textContent = quizData.title;
   quizElements.submit.textContent = "wyślij";
   const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
