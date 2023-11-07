@@ -13,7 +13,9 @@ export async function startQuiz(
     allowNegativeAnswer
   );
   const quizLength = quizData.answer.length;
-  const quizElements = createElements();
+  const answerCont = document.querySelector(".answer");
+  const quizElements = createElements(answerCont);
+  quizElements.submit.textContent = "wyślij";
   const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
     askQuestion(

@@ -1,0 +1,15 @@
+.answer {
+    display: flex;
+}
+.answer p {
+ font-size: 8rem;   
+}
+.answer input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid #6C6969;
+    width: 80px;
+    font-size: 6rem;
+    text-align: center;
+    overflow: visible;
+}
