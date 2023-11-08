@@ -13,10 +13,12 @@ export async function startQuiz(
     allowNegativeAnswer
   );
   const quizLength = quizData.answer.length;
-  const answerCont = document.querySelector(".answer");
+  const answerCont = document.querySelector('.answer');
+  const inputContainer = document.querySelector('.input-question-container');
   const quizElements = createElements(answerCont);
   quizElements.title.textContent = quizData.title;
-  quizElements.submit.textContent = "wyślij";
+  quizElements.submit.textContent = 'wyślij';
+  elementsToContainer(inputContainer,quizElements.question,quizElements.answer)
   const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
     askQuestion(
@@ -25,6 +27,7 @@ export async function startQuiz(
       ...quizData.numbers[i]
     );
     const answer = await getPromise(quizElements.submit, quizElements.answer);
+    quizElements.answer.value = "";
     usersAnswers.push([answer, quizData.answer[i]]);
   }
   writeScore(quizElements, usersAnswers);
@@ -63,3 +66,9 @@ const createElements = function (questionContainer = document.body) {
 const askQuestion = function (questionEl, operation, a, b) {
   questionEl.textContent = `Ile to ${a} ${operation} ${b}`;
 };
+function elementsToContainer(container, ...elements) {
+  elements.forEach(element => {
+    element.remove();
+    container.appendChild(element);
+  })
+}
