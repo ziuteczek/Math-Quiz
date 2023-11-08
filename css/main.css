@@ -34,6 +34,7 @@ body {
 button {
   font-family: inherit;
   font-size: 1em;
+  cursor: pointer;
 }
 nav {
   top: 0;
