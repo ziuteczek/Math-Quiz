@@ -44,7 +44,6 @@ function writeScore(quizElObject, answers = []) {
     }
     return corectAnswers;
   }, 0);
-  const scoreString = `Odpowiedziales/as poprawnie na ${corectAnswers} z ${answers.length} pytań`;
 }
 function getPromise(btn, textArea) {
   return new Promise((resolve) => {

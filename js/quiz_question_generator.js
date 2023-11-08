@@ -17,7 +17,7 @@ const handleDivision = function (minNum, maxNum, length) {
     do {
       a = Math.floor(Math.random() * (minNum - maxNum)) + maxNum;
       aDividers = getDividers(a);
-    } while (!aDividers);
+    } while (aDividers.length == 0);
     b = aDividers[Math.floor(Math.random() * aDividers.length)];
     nums.push([a, b]);
   }
@@ -73,7 +73,7 @@ const operatorToString = (operator) => {
       operationName = 'Odejmowanie';
       break;
     case '/':
-      operation = 'Dzielenie';
+      operationName = 'Dzielenie';
       break;
   }
   return operationName;
