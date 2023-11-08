@@ -10,16 +10,22 @@ const getDividers = (n) => {
   }
   return dividers;
 };
+const isRepeated = (toCheck, quizNums = []) =>
+  quizNums.some((nums) => toCheck.every((val, i) => val === nums[i]));
 const handleDivision = function (minNum, maxNum, length) {
   const nums = [];
   let a, aDividers, b;
   for (let i = 0; i < length; i++) {
     do {
-      a = Math.floor(Math.random() * (minNum - maxNum)) + maxNum;
-      aDividers = getDividers(a);
-    } while (aDividers.length == 0);
-    b = aDividers[Math.floor(Math.random() * aDividers.length)];
+      do {
+        a = Math.floor(Math.random() * (minNum - maxNum)) + maxNum;
+        aDividers = getDividers(a);
+      } while (aDividers.length == 0);
+      b = aDividers[Math.floor(Math.random() * aDividers.length)];
+      console.log(isRepeated([a, b], nums));
+    } while (isRepeated([a, b], nums));
     nums.push([a, b]);
+    console.log(nums);
   }
   return nums;
 };
@@ -35,9 +41,12 @@ const generateQuizNumbers = function (
   }
   const quizNumbers = [];
   const chceckfunction = canBeNegative ? handlePositive : handleNegative;
+  let a, b;
   for (let i = 0; i < quizLength; i++) {
-    const a = Math.round(Math.random() * (minNumber - maxNumber)) + maxNumber;
-    const b = Math.round(Math.random() * (minNumber - maxNumber)) + maxNumber;
+    do {
+      a = Math.round(Math.random() * (minNumber - maxNumber)) + maxNumber;
+      b = Math.round(Math.random() * (minNumber - maxNumber)) + maxNumber;
+    } while (isRepeated([a, b], quizNumbers));
     quizNumbers.push(chceckfunction(a, b));
   }
   return quizNumbers;
@@ -98,7 +107,7 @@ export function quizQuestionGenerator(
     answer: quizNumbers.map((nums) =>
       nums.reduce((a, b) => eval(`${a} ${operation} ${b}`))
     ),
-    title: createTitleString(...diffToRange(difficulty, operation),operation),
+    title: createTitleString(...diffToRange(difficulty, operation), operation),
   };
   return quizData;
 }
