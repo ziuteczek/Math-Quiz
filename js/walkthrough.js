@@ -1,5 +1,6 @@
 'use strict';
 import * as generator from './quiz_question_generator.js';
+import * as end from './end_quiz.js';
 export async function startQuiz(
   operation,
   quizDifficulty,
@@ -36,16 +37,7 @@ export async function startQuiz(
     quizElements.answer.value = '';
     usersAnswers.push([answer, quizData.answer[i]]);
   }
-  writeScore(quizElements, usersAnswers);
-}
-function writeScore(quizElObject, answers = []) {
-  Object.values(quizElObject).forEach((element) => element.remove());
-  const corectAnswers = answers.reduce((corectAnswers, answer) => {
-    if (answer[0] === answer[1]) {
-      return corectAnswers++;
-    }
-    return corectAnswers;
-  }, 0);
+  end.endQuiz(quizElements, usersAnswers,quizData);
 }
 function getPromise(btn, textArea) {
   return new Promise((resolve) => {
