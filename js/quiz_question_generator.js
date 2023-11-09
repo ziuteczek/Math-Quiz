@@ -22,10 +22,8 @@ const handleDivision = function (minNum, maxNum, length) {
         aDividers = getDividers(a);
       } while (aDividers.length == 0);
       b = aDividers[Math.floor(Math.random() * aDividers.length)];
-      console.log(isRepeated([a, b], nums));
     } while (isRepeated([a, b], nums));
     nums.push([a, b]);
-    console.log(nums);
   }
   return nums;
 };

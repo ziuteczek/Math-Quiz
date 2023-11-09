@@ -9,7 +9,7 @@ html {
   font-size: 62.5%;
 }
 :focus {
-    outline: none;
+  outline: none;
 }
 :root {
   --bg-color: #dbe2ef;

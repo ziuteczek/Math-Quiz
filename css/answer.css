@@ -1,6 +1,7 @@
 .answer {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 .answer p {
@@ -11,16 +12,16 @@
   order: 4;
   font-size: 2rem;
   width: min-content;
-  padding: .5em 2em;
+  padding: 0.5em 2em;
   text-transform: uppercase;
   border: none;
   border-radius: 20px;
   color: var(--bg-color);
   background-color: var(--primary);
-  transition: scale .3s;
+  transition: scale 0.3s;
 }
 .answer button:hover {
-  scale: .95;
+  scale: 0.95;
 }
 .answer input {
   background-color: transparent;
@@ -34,14 +35,18 @@
   overflow: visible;
   padding-bottom: none;
 }
-.input-question-container{
-  justify-content: center;
+.input-question-container {
   display: flex;
+  justify-content: center;
   order: 2;
 }
 .answer h3 {
   font-size: 6.5rem;
   text-align: center;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   order: 1;
+}
+.answer .questionNum {
+  order: 5;
+  font-weight: bold;
 }

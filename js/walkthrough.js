@@ -16,6 +16,7 @@ export async function startQuiz(
   const answerCont = document.querySelector('.answer');
   const inputContainer = document.querySelector('.input-question-container');
   const quizElements = createElements(answerCont);
+  quizElements.questionNum.classList.add("questionNum")
   quizElements.title.textContent = quizData.title;
   quizElements.submit.textContent = 'wyślij';
   elementsToContainer(
@@ -25,6 +26,7 @@ export async function startQuiz(
   );
   const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
+    quizElements.questionNum.textContent = `${i+1}/${quizLength}`
     askQuestion(
       quizElements.question,
       quizData.operation,
@@ -59,7 +61,7 @@ function getPromise(btn, textArea) {
   });
 }
 const createElements = function (questionContainer = document.body) {
-  const elementsToCreate = ['h3', 'p', 'input', 'button'];
+  const elementsToCreate = ['h3', 'p', 'input', 'button','p'];
   const quizElements = elementsToCreate.map((quizElement) =>
     document.createElement(quizElement)
   );
@@ -69,10 +71,11 @@ const createElements = function (questionContainer = document.body) {
     question: quizElements[1],
     answer: quizElements[2],
     submit: quizElements[3],
+    questionNum: quizElements[4]
   };
 };
 const askQuestion = function (questionEl, operation, a, b) {
-  questionEl.textContent = `Ile to ${a} ${operation} ${b}`;
+  questionEl.textContent = `${a} ${operation} ${b} = `;
 };
 function elementsToContainer(container, ...elements) {
   elements.forEach((element) => {
