@@ -14,10 +14,10 @@ export async function startQuiz(
     allowNegativeAnswer
   );
   const quizLength = quizData.answer.length;
-  const answerCont = document.querySelector('.answer');
+  const answerCont = document.body;
   const inputContainer = document.querySelector('.input-question-container');
   const quizElements = createElements(answerCont);
-  quizElements.questionNum.classList.add("questionNum")
+  quizElements.questionNum.classList.add('questionNum');
   quizElements.title.textContent = quizData.title;
   quizElements.submit.textContent = 'wyślij';
   elementsToContainer(
@@ -27,7 +27,7 @@ export async function startQuiz(
   );
   const usersAnswers = [];
   for (let i = 0; i < quizLength; i++) {
-    quizElements.questionNum.textContent = `${i+1}/${quizLength}`
+    quizElements.questionNum.textContent = `${i + 1}/${quizLength}`;
     askQuestion(
       quizElements.question,
       quizData.operation,
@@ -37,7 +37,7 @@ export async function startQuiz(
     quizElements.answer.value = '';
     usersAnswers.push([answer, quizData.answer[i]]);
   }
-  end.endQuiz(quizElements, usersAnswers,quizData);
+  end.endQuiz(quizElements, usersAnswers, quizData);
 }
 function getPromise(btn, textArea) {
   return new Promise((resolve) => {
@@ -53,17 +53,20 @@ function getPromise(btn, textArea) {
   });
 }
 const createElements = function (questionContainer = document.body) {
-  const elementsToCreate = ['h3', 'p', 'input', 'button','p'];
+  const elementsToCreate = ['h3', 'p', 'input', 'button', 'p'];
   const quizElements = elementsToCreate.map((quizElement) =>
     document.createElement(quizElement)
   );
-  quizElements.forEach((element) => questionContainer.append(element));
+  quizElements.forEach((element) => {
+    questionContainer.append(element);
+    element.classList.add('question');
+  });
   return {
     title: quizElements[0],
     question: quizElements[1],
     answer: quizElements[2],
     submit: quizElements[3],
-    questionNum: quizElements[4]
+    questionNum: quizElements[4],
   };
 };
 const askQuestion = function (questionEl, operation, a, b) {

@@ -1,13 +1,14 @@
-.answer {
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.answer p {
+p.question {
   font-size: 8rem;
 }
-.answer button {
+button.question {
+  margin-top: 50px;
   position: relative;
   order: 4;
   font-size: 2rem;
@@ -20,10 +21,10 @@
   background-color: var(--primary);
   transition: scale 0.3s;
 }
-.answer button:hover {
+button.question:hover {
   scale: 0.95;
 }
-.answer input {
+input.question {
   background-color: transparent;
   border: none;
   border-bottom: 3px solid #6c6969;
@@ -40,13 +41,16 @@
   justify-content: center;
   order: 2;
 }
-.answer h3 {
+h3.question {
   font-size: 6.5rem;
   text-align: center;
   margin-bottom: 0.5em;
   order: 1;
 }
-.answer .questionNum {
+.question.questionNum {
+  position: absolute;
+  bottom: 100px;
   order: 5;
   font-weight: bold;
+  justify-self: flex-end;
 }
