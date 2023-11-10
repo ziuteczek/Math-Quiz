@@ -8,8 +8,10 @@ export function endQuiz(quizEls, answers = [], quizData) {
 }
 const generateSolutionHTML = (title, userAnswers, quizData) =>
   `<h2>${title}</h2>
-  <div class="corect-answers">${generateUserAnswers(userAnswers,quizData)}</div>
-  <div class="resoult"></div>`;
+  <div class='resolt-container'>
+    <div class="solution">${generateUserAnswers(userAnswers,quizData)}</div>
+    <div class="resoult"></div>
+  </div>`;
 const generateUserAnswers = (userAnswers, quizData) => {
   let answerHTML = '',a,b;
   for (let i = 0; i < quizData.answer.length; i++) {
