@@ -1,10 +1,11 @@
 'use strict';
 const handleNegative = (a, b) => (a > b ? [a, b] : [b, a]);
 const handlePositive = (a, b) => [a, b];
-const getDividers = (n) => {
+const getDividers = (n,allowNotIntegers=false) => {
   const dividers = [];
+  const dividableToHalf = allowNotIntegers ? (n,i) => n / i - Math.floor(n / i) === 0.5 : false; 
   for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i == 0) {
+    if (n % i === 0 || dividableToHalf) {
       dividers.push(i);
     }
   }
@@ -57,14 +58,34 @@ const quizDiffHandler = function (diff, length, canBeNegative, operation) {
     operation
   );
 };
-const diffToRange = (n) => {
-  switch (n) {
-    case 1:
-      return [0, 5];
-    case 2:
-      return [5, 10];
-    case 3:
-      return [10, 15];
+const diffToRange = (difficulty, operation) => {
+  if (operation === '+' || operation === '-')
+    switch (difficulty) {
+      case 1:
+        return [1, 15];
+      case 2:
+        return [10, 50];
+      case 3:
+        return [50, 100];
+    }
+  else if (operation === '*') {
+    switch (difficulty) {
+      case 1:
+        return [2, 5];
+      case 2:
+        return [4, 7];
+      case 3:
+        return [7, 10];
+    }
+  } else {
+    switch (difficulty) {
+      case 1:
+        return [1, 20];
+      case 2:
+        return [30, 50];
+      case 3:
+        return [50, 100];
+    }
   }
 };
 const operatorToString = (operator) => {
