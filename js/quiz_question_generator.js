@@ -1,9 +1,11 @@
 'use strict';
 const handleNegative = (a, b) => (a > b ? [a, b] : [b, a]);
 const handlePositive = (a, b) => [a, b];
-const getDividers = (n,allowNotIntegers=false) => {
+const getDividers = (n, allowNotIntegers = false) => {
   const dividers = [];
-  const dividableToHalf = allowNotIntegers ? (n,i) => n / i - Math.floor(n / i) === 0.5 : false; 
+  const dividableToHalf = allowNotIntegers
+    ? (n, i) => n / i - Math.floor(n / i) === 0.5
+    : false;
   for (let i = 2; i <= Math.sqrt(n); i++) {
     if (n % i === 0 || dividableToHalf) {
       dividers.push(i);
@@ -53,12 +55,13 @@ const generateQuizNumbers = function (
 const quizDiffHandler = function (diff, length, canBeNegative, operation) {
   return generateQuizNumbers(
     length,
-    ...diffToRange(diff),
+    ...diffToRange(diff,operation),
     canBeNegative,
     operation
   );
 };
 const diffToRange = (difficulty, operation) => {
+  console.log(operation);
   if (operation === '+' || operation === '-')
     switch (difficulty) {
       case 1:
@@ -68,16 +71,7 @@ const diffToRange = (difficulty, operation) => {
       case 3:
         return [50, 100];
     }
-  else if (operation === '*') {
-    switch (difficulty) {
-      case 1:
-        return [2, 5];
-      case 2:
-        return [4, 7];
-      case 3:
-        return [7, 10];
-    }
-  } else {
+  else if (operation === '/') {
     switch (difficulty) {
       case 1:
         return [1, 20];
@@ -85,6 +79,16 @@ const diffToRange = (difficulty, operation) => {
         return [30, 50];
       case 3:
         return [50, 100];
+    }
+  }
+  else {
+    switch (difficulty) {
+      case 1:
+        return [2, 5];
+      case 2:
+        return [4, 7];
+      case 3:
+        return [7, 10];
     }
   }
 };
