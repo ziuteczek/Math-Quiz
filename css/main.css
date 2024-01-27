@@ -17,14 +17,17 @@ html {
   --secoundary: #112d4e;
 }
 body {
-  position: relative;
+  z-index: -1;
+  gap: 3rem;
   background-color: var(--bg-color);
   font-family: 'Playpen Sans', cursive;
-  display: flex;
-  min-height: 100vh;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    'nav'
+    'main'
+    'footer';
+  grid-template-rows: 60px 1fr 150px;
+  min-height: 100svh;
 }
 .wrapper {
   max-width: 1200px;
@@ -37,13 +40,12 @@ button {
   cursor: pointer;
 }
 nav {
-  top: 0;
   position: absolute;
+  top: 0;
   width: 100%;
-  min-height: 60px;
+  grid-area: nav;
   background-color: var(--primary);
-  border-bottom-left-radius: 35px;
-  border-bottom-right-radius: 35px;
+  border-radius: none;
   grid-row: 1;
 }
 .nav-title {
@@ -54,9 +56,12 @@ nav {
   font-weight: bold;
 }
 .chose-quiz {
+  grid-area: main;
+  align-self: center;
+  justify-self: center;
   display: grid;
-  grid-template-columns: repeat(2, 400px);
-  grid-template-rows: repeat(2, 130px);
+  grid-template-columns: repeat(1, 400px);
+  grid-template-rows: repeat(4, 130px);
   align-self: center;
   gap: 50px;
   margin-right: 5px;
@@ -75,7 +80,26 @@ nav {
   transition: all 0.3s;
   border-radius: 5px;
   text-transform: capitalize;
-  &:hover {
-    scale: 0.95;
+}
+.chose-diff-btn:hover,
+.chose-quiz__btn:hover {
+  scale: 0.95;
+}
+@media (min-width: 567px) {
+  nav {
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+  }
+}
+@media (min-width: 882px) {
+  .chose-quiz {
+    grid-template-columns: repeat(2, 400px);
+    grid-template-rows: repeat(2, 150px);
+  }
+}
+@media (max-width: 425px) {
+  .chose-quiz {
+    grid-template-columns: repeat(1, 300px);
+    grid-template-rows: repeat(4, 130px);
   }
 }

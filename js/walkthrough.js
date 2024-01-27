@@ -18,6 +18,8 @@ export async function startQuiz(
   const inputContainer = document.querySelector('.input-question-container');
   const quizElements = createElements(answerCont);
   quizElements.questionNum.classList.add('questionNum');
+  inputContainer.append(quizElements.title)
+  inputContainer.append(quizElements.submit)
   quizElements.title.textContent = quizData.title;
   quizElements.submit.textContent = 'wyślij';
   elementsToContainer(

@@ -1,7 +1,6 @@
 footer {
-    position: absolute;
     width: 100%;
-    bottom: 0;
+    grid-area: footer;
 }
 .wave-section {
     position: relative;
@@ -54,3 +53,6 @@ footer {
         background-position: 1000px;
     }
 }
+/* @media (max-height:) {
+    
+} */

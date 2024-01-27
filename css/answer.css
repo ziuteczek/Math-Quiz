@@ -1,9 +1,3 @@
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 p.question {
   font-size: 8rem;
 }
@@ -38,8 +32,10 @@ input.question {
 }
 .input-question-container {
   display: flex;
+  grid-area: main;
   justify-content: center;
   order: 2;
+  z-index: -1;
 }
 h3.question {
   font-size: 6.5rem;
